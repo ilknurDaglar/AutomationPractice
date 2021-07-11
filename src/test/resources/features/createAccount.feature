@@ -26,8 +26,8 @@ Feature: Users should be able to create account
     Then "Invalid email address" pop should be display
     Examples:
       | invalidEmail address |
-      | !~~~~@x.com              |
-      | !****@z.com              |
+      | ~~~~~@x.com              |
+      | *****@z.com              |
 
 #it also accepts  0@a.com, $@b.com, -@c.com,  #@d.com, !@e.com
 
@@ -56,7 +56,7 @@ Feature: Users should be able to create account
     Then My Account page should not display;
     Examples:
       | firstname | lastname  | password | address | city    | zipcode | phone            |
-      | n^&~\`/*  | q^*&~/`/* | 00000    | 3204724 | 5397593 | 00000   | 0000000000000000 |
+      | e^&~\`/*  | x^*&~/`/* | 00000    | 3204724 | 5397593 | 00000   | 0000000000000000 |
 
     #Password also excepted    @@@@@, $$$$$, ....., #####
 
