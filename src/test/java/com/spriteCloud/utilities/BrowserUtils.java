@@ -1,10 +1,7 @@
 package com.spriteCloud.utilities;
 
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,6 +10,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BrowserUtils {
+    /**
+     * Waits for provided element to be clickable
+     *
+     * @param element
+     * @param timeout
+     * @return
+     */
+    public static WebElement waitForClickablility(WebElement element, int timeout) {
+        WebDriverWait wait = new WebDriverWait(Driver.get(), timeout);
+        return wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    /**
+     * Waits for element matching the locator to be clickable
+     *
+     * @param locator
+     * @param timeout
+     * @return
+     */
+    public static WebElement waitForClickablility(By locator, int timeout) {
+        WebDriverWait wait = new WebDriverWait(Driver.get(), timeout);
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
     /**
      * Moves the mouse to given element
      *
@@ -53,6 +74,7 @@ public class BrowserUtils {
         }
         return elemTexts;
     }
+
     /**
      * Performs a pause
      *
@@ -66,53 +88,7 @@ public class BrowserUtils {
         }
     }
 
-    /**
-     * Waits for the provided element to be visible on the page
-     *
-     * @param element
-     * @param timeToWaitInSec
-     * @return
-     */
-    public static WebElement waitForVisibility(WebElement element, int timeToWaitInSec) {
-        WebDriverWait wait = new WebDriverWait(Driver.get(), timeToWaitInSec);
-        return wait.until(ExpectedConditions.visibilityOf(element));
-    }
 
-    /**
-     * Waits for element matching the locator to be visible on the page
-     *
-     * @param locator
-     * @param timeout
-     * @return
-     */
-    public static WebElement waitForVisibility(By locator, int timeout) {
-        WebDriverWait wait = new WebDriverWait(Driver.get(), timeout);
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-    }
-
-    /**
-     * Waits for provided element to be clickable
-     *
-     * @param element
-     * @param timeout
-     * @return
-     */
-    public static WebElement waitForClickablility(WebElement element, int timeout) {
-        WebDriverWait wait = new WebDriverWait(Driver.get(), timeout);
-        return wait.until(ExpectedConditions.elementToBeClickable(element));
-    }
-
-    /**
-     * Waits for element matching the locator to be clickable
-     *
-     * @param locator
-     * @param timeout
-     * @return
-     */
-    public static WebElement waitForClickablility(By locator, int timeout) {
-        WebDriverWait wait = new WebDriverWait(Driver.get(), timeout);
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
-    }
     /**
      * Verifies whether the element matching the provided locator is displayed on page
      *
@@ -128,6 +104,7 @@ public class BrowserUtils {
 
         }
     }
+
     /**
      * Verifies whether the element matching the provided locator is NOT displayed on page
      *
@@ -142,6 +119,7 @@ public class BrowserUtils {
 
         }
     }
+
 
     /**
      * Verifies whether the element is displayed on page
@@ -158,6 +136,7 @@ public class BrowserUtils {
 
         }
     }
+
     /**
      * Clicks on an element using JavaScript
      *
@@ -167,14 +146,8 @@ public class BrowserUtils {
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", element);
         ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].click();", element);
     }
-    /**
-     * Scrolls down to an element using JavaScript
-     *
-     * @param element
-     */
-    public static void scrollToElement(WebElement element) {
-        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", element);
-    }
+
+
     /**
      * Checks or unchecks given checkbox
      *
@@ -191,16 +164,37 @@ public class BrowserUtils {
                 element.click();
             }
         }
+
     }
     /**
-     * executes the given JavaScript command on given web element
+     * Scrolls down to an element using JavaScript
      *
      * @param element
      */
-    public static void executeJScommand(WebElement element, String command) {
-        JavascriptExecutor jse = (JavascriptExecutor) Driver.get();
-        jse.executeScript(command, element);
+    public static void scrollToElement(WebElement element) {
+        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", element);
+    }
+    public static void clickWithWait(By by, int attempts) {
+        int counter = 0;
+        //click on element as many as you specified in attempts parameter
+        while (counter < attempts) {
+            try {
+                //selenium must look for element again
+                clickWithJS(Driver.get().findElement(by));
+                //if click is successful - then break
+                break;
+            } catch (WebDriverException e) {
+                //if click failed
+                //print exception
+                //print attempt
+                e.printStackTrace();
+                ++counter;
+                //wait for 1 second, and try to click again
+                waitFor(1);
+            }
+        }
 
     }
 
 }
+

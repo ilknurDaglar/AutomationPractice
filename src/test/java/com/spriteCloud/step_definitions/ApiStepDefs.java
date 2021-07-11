@@ -9,14 +9,16 @@ import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
 public class ApiStepDefs {
+
     Response response = given().log().all()
             .and().queryParam("id", 1)
             .and().queryParam("title", "sunt aut facere repellat provident occaecati excepturi optio reprehenderit")
             .and().queryParam("userId", 1).when().get("https://jsonplaceholder.typicode.com/posts/1");
 
 
-    @Given("the user sends request to {string}")
-    public void the_user_sends_request_to(String string) {
+    @Given("the user sends request to api_url")
+    public void theUserSendsRequestToApi_url() {
+
     }
 
     @Given("the key is {string} and value is {int}")
@@ -99,4 +101,6 @@ public class ApiStepDefs {
 
         assertEquals(response.contentType(), "application/json; charset=utf-8");
     }
+
+
 }

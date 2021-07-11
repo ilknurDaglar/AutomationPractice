@@ -58,6 +58,6 @@ Feature: Users should be able to create account
       | firstname | lastname  | password | address | city    | zipcode | phone            |
       | n^&~\`/*  | q^*&~/`/* | 00000    | 3204724 | 5397593 | 00000   | 0000000000000000 |
 
-    #Password also excepted    @@@@@, $$$$$, #####, .....
+    #Password also excepted    @@@@@, $$$$$, ....., #####
 
     #There are also BUGS on "-Home phone, -Addres line2,-Company, -Assign an adress" boxes
