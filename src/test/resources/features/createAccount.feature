@@ -15,7 +15,7 @@ Feature: Users should be able to create account
     And  click the Create an account button
     Then Create an account page should be display
     Examples:
-      | email address        |
+      | email address          |
       | azihaskkbaku@gmail.com |
 
 #BUG 1
@@ -26,8 +26,8 @@ Feature: Users should be able to create account
     Then "Invalid email address" pop should be display
     Examples:
       | invalidEmail address |
-      | ~~~~~@x.com              |
-      | *****@z.com              |
+      | ~~~~~~@x.com          |
+      | ******@z.com          |
 
 #it also accepts  0@a.com, $@b.com, -@c.com,  #@d.com, !@e.com
 
@@ -56,8 +56,8 @@ Feature: Users should be able to create account
     Then My Account page should not display;
     Examples:
       | firstname | lastname  | password | address | city    | zipcode | phone            |
-      | e^&~\`/*  | x^*&~/`/* | 00000    | 3204724 | 5397593 | 00000   | 0000000000000000 |
+      | e^&~\`/*  | x^*&~/`/* | $$$$$    | 3204724 | 5397593 | 00000   | 0000000000000000 |
 
-    #Password also excepted    @@@@@, $$$$$, ....., #####
+    #Password also excepted    @@@@@, 00000, ....., #####
 
     #There are also BUGS on "-Home phone, -Addres line2,-Company, -Assign an adress" boxes

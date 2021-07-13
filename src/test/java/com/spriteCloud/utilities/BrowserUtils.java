@@ -166,35 +166,6 @@ public class BrowserUtils {
         }
 
     }
-    /**
-     * Scrolls down to an element using JavaScript
-     *
-     * @param element
-     */
-    public static void scrollToElement(WebElement element) {
-        ((JavascriptExecutor) Driver.get()).executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-    public static void clickWithWait(By by, int attempts) {
-        int counter = 0;
-        //click on element as many as you specified in attempts parameter
-        while (counter < attempts) {
-            try {
-                //selenium must look for element again
-                clickWithJS(Driver.get().findElement(by));
-                //if click is successful - then break
-                break;
-            } catch (WebDriverException e) {
-                //if click failed
-                //print exception
-                //print attempt
-                e.printStackTrace();
-                ++counter;
-                //wait for 1 second, and try to click again
-                waitFor(1);
-            }
-        }
-
-    }
 
 }
 
