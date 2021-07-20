@@ -68,7 +68,7 @@ public class CreateAccountStepDefs {
 
     @When("the user enters mail address")
     public void the_user_enters_mail_address() {
-        createAccountPage.emailBtn.sendKeys("wasttcakawz.com");
+        createAccountPage.emailBtn.sendKeys("wasasabiawz.com");
     }
 
     @When("the user enters the valid {string},{string},\"{int},{string},{string},{string}, {string},")
@@ -108,7 +108,7 @@ public class CreateAccountStepDefs {
 
     @And("the user enters with new mail address")
     public void theUserEntersWithNewMailAddress() {
-        createAccountPage.emailBtn.sendKeys("sarerrss@gmail.com");
+        createAccountPage.emailBtn.sendKeys("sareseras@gmail.com");
     }
 
     @When("the user enters the invalid {string},{string},{string},{string},{string},{string}, {string},")
