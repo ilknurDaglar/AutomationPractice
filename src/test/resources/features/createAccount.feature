@@ -16,7 +16,7 @@ Feature: Users should be able to create account
     Then Create an account page should be display
     Examples:
       | email address          |
-      |olivwertaku@gmail.com |
+      |olifmolly@gmail.com |
 
 #BUG 1
   Scenario Outline:the user enters with invalid mail address
@@ -26,8 +26,8 @@ Feature: Users should be able to create account
     Then "Invalid email address" pop should be display
     Examples:
       | invalidEmail address |
-      | ~~~$@x.com          |
-      | ***$@z.com          |
+      | ~~~$$@x.com          |
+      | ***$$@z.com          |
 
 #it also accepts  0@a.com, $@b.com, -@c.com,  #@d.com, !@e.com
 

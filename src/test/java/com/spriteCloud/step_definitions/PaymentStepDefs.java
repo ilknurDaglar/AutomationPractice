@@ -29,7 +29,7 @@ public class PaymentStepDefs {
     public void verify_that_address_page_should_display() {
 
         if (paymentPage.authentitaionPageTitle.getText().equals("AUTHENTICATION")) {
-            createAccountPage.emailBtn.sendKeys("uratumedenigmail.com");
+            createAccountPage.emailBtn.sendKeys("uratum@gmail.com");
             BrowserUtils.waitFor(2);
             BrowserUtils.clickWithJS(createAccountPage.createBtn);
             BrowserUtils.waitFor(2);

@@ -7,7 +7,7 @@ Feature:Search result page
   Scenario:Verify that the searched item name matches with the page title
     Then searched item name should be on the page
 
- @wip
+
 #BUG 9
   Scenario: Verify that user can sort the results according to "Price:Lowest first"
     When The user select "Price: Lowest first" from sort by
