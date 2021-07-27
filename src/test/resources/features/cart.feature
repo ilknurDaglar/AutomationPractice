@@ -1,10 +1,9 @@
 Feature: User can add the items in cart
-
   Background:
-
     Given the user is on the home page
     When the user navigate to Women Page
 
+@wip
   Scenario:Adding item to basket
     And The user hover over the item picture
     And The user should see the "Add to chart" pop up

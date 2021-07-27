@@ -1,5 +1,6 @@
 package com.spriteCloud.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -43,11 +44,32 @@ public class CartPage extends BasePage {
     public WebElement priceInChart2;
 
     @FindBy(xpath = "//*[@id=\"total_shipping\"]")
-    public WebElement shipping;
+    public WebElement shippingPrice;
 
     @FindBy(xpath = "//*[@id=\"total_price\"]")
     public WebElement totalPrice;
 
+    public void isInTheBasket() {
+        List<WebElement> qCheck = quantityCheck;
+        for (WebElement each : qCheck) {
+            String value = each.getAttribute("value");
+            int i = Integer.parseInt(value);
+            Assert.assertEquals(1, i);
+
+        }
+    }
+      public  void isPriceCorrect(){
+            int priceatChart1 = Integer.parseInt(priceInChart1.getText().replace("$", "").replace(",", "").replace(".", ""));
+            int priceatChart2 = Integer.parseInt(priceInChart2.getText().replace("$", "").replace(",", "").replace(".", ""));
+            int shipping = Integer.parseInt(shippingPrice.getText().replace("$", "").replace(",", "").replace(".", ""));
+            int sum = priceatChart1 + priceatChart2 + shipping;
+            System.out.println(sum);
+            int TotalPrice = Integer.parseInt(totalPrice.getText().replace("$", "").replace(",", "").replace(".", ""));
+
+            Assert.assertEquals(sum, TotalPrice);
+
+
+    }
 
 
 

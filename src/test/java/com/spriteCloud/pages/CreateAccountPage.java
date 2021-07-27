@@ -1,5 +1,6 @@
 package com.spriteCloud.pages;
 
+import com.spriteCloud.utilities.BrowserUtils;
 import com.spriteCloud.utilities.ConfigurationReader;
 import com.spriteCloud.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -60,4 +61,10 @@ public class CreateAccountPage extends BasePage {
         Driver.get().get(ConfigurationReader.get("url"));
     }
 
+
+
+
 }
+
+
+

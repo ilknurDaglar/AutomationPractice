@@ -74,26 +74,13 @@ public class CartStepDefs {
 
     @Then("Verify that two selected items is in the basket")
     public void verifyThatTwoSelectedItemsIsInTheBasket() {
-        List<WebElement> quantityCheck = cartPage.quantityCheck;
-        for (WebElement each : quantityCheck) {
-            String value = each.getAttribute("value");
-            int i = Integer.parseInt(value);
-            Assert.assertEquals(1, i);
+        cartPage.isInTheBasket();
 
-        }
     }
 
     @When("Verify that total price is sum of two prices and plus shipping")
     public void verify_that_total_price_is_sum_of_two_prices_and_plus_shipping() {
-
-        int priceatChart1=Integer.parseInt(cartPage.priceInChart1.getText().replace("$", "").replace(",", "").replace(".", ""));
-        int priceatChart2=Integer.parseInt(cartPage.priceInChart2.getText().replace("$", "").replace(",", "").replace(".", ""));
-        int shipping=Integer.parseInt(cartPage.shipping.getText().replace("$", "").replace(",", "").replace(".", ""));
-        int sum=priceatChart1+priceatChart2+shipping;
-        System.out.println(sum);
-        int TotalPrice=Integer.parseInt(cartPage.totalPrice.getText().replace("$", "").replace(",", "").replace(".", ""));
-
-        Assert.assertEquals(sum,TotalPrice);
+        cartPage.isPriceCorrect();
 
     }
 }

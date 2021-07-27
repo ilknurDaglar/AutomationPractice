@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.Select;
 
 public class PaymentStepDefs {
     PaymentPage paymentPage = new PaymentPage();
-    CreateAccountPage createAccountPage = new CreateAccountPage();
+
 
     @And("the user clicks Proceed to checkout button on the payment page")
     public void theUserClicksProceedToCheckoutButtonOnThePaymentPage() {
@@ -28,29 +28,7 @@ public class PaymentStepDefs {
     @Then("Verify that address page should display")
     public void verify_that_address_page_should_display() {
 
-        if (paymentPage.authentitaionPageTitle.getText().equals("AUTHENTICATION")) {
-            createAccountPage.emailBtn.sendKeys("uratum@gmail.com");
-            BrowserUtils.waitFor(2);
-            BrowserUtils.clickWithJS(createAccountPage.createBtn);
-            BrowserUtils.waitFor(2);
-            createAccountPage.firstname.sendKeys("Adam");
-            createAccountPage.lastname.sendKeys("Sandler");
-            createAccountPage.password.sendKeys("password");
-            createAccountPage.address.sendKeys("263532");
-            createAccountPage.city.sendKeys("213612");
-            createAccountPage.postcode.sendKeys("36264");
-            createAccountPage.phone.sendKeys("28838323");
-            BrowserUtils.waitFor(1);
-            Select select = new Select(createAccountPage.state);
-            select.selectByVisibleText("Kentucky");
-            createAccountPage.register.click();
-            BrowserUtils.waitFor(2);
-
-            BrowserUtils.clickWithJS(paymentPage.proceedCheckoutBtn);
-        } else {
-            Assert.assertEquals(paymentPage.addressPageTitle.getText(), "ADDRESSES");
-
-        }
+        paymentPage.isAddressDisplay();
     }
 
     @Then("the user clicks proceed to checkout button")
