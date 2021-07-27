@@ -11,9 +11,12 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.Random;
+
 public class CreateAccountStepDefs {
     CreateAccountPage createAccountPage = new CreateAccountPage();
-
+    Random randomNumber = new Random();
+    String email;
     @Given("the user is on the home page")
     public void the_user_is_on_the_home_page() {
 
@@ -24,7 +27,6 @@ public class CreateAccountStepDefs {
     public void the_user_click_the_signin_button() {
         BrowserUtils.waitFor(2);
         createAccountPage.signInBtn.click();
-
     }
 
     @Then("Authentication page should be display")
@@ -37,11 +39,13 @@ public class CreateAccountStepDefs {
 
     @When("the user enters valid {string}")
     public void the_user_enters_valid(String validEmail) {
+
         createAccountPage.emailBtn.sendKeys(validEmail);
     }
 
     @When("click the Create an account button")
     public void click_the_Create_an_account_button() {
+
         BrowserUtils.waitFor(2);
         createAccountPage.createBtn.click();
         BrowserUtils.waitFor(3);
@@ -68,7 +72,10 @@ public class CreateAccountStepDefs {
 
     @When("the user enters mail address")
     public void the_user_enters_mail_address() {
-        createAccountPage.emailBtn.sendKeys("babciaaci.com");
+
+        int number=randomNumber.nextInt();
+             email = "abc" + number+"@hotmail.com";
+        createAccountPage.emailBtn.sendKeys(email);
     }
 
     @When("the user enters the valid {string},{string},\"{int},{string},{string},{string}, {string},")
@@ -108,7 +115,10 @@ public class CreateAccountStepDefs {
 
     @And("the user enters with new mail address")
     public void theUserEntersWithNewMailAddress() {
-        createAccountPage.emailBtn.sendKeys("sananews@gmail.com");
+        int newNumber = randomNumber.nextInt();
+        email = "defg" + newNumber + "@yahoo.com";
+        createAccountPage.emailBtn.sendKeys(email);
+
     }
 
     @When("the user enters the invalid {string},{string},{string},{string},{string},{string}, {string},")
@@ -128,12 +138,10 @@ public class CreateAccountStepDefs {
         BrowserUtils.waitFor(1);
     }
 
-
     @Then("My Account page should not display;")
     public void my_Account_page_should_not_display() {
         Assert.assertFalse(createAccountPage.myAccountPage.isDisplayed());
 
     }
-
 
 }

@@ -61,9 +61,6 @@ public class CreateAccountPage extends BasePage {
         Driver.get().get(ConfigurationReader.get("url"));
     }
 
-
-
-
 }
 
 
