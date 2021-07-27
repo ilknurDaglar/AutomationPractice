@@ -73,8 +73,8 @@ public class SearchPage extends BasePage{
 
      }
 
-
     public void isItemsSortA_Z(){
+
         List<WebElement> elements = Driver.get().findElements(By.xpath("//h5[@itemprop='name']"));
         List<String> elementsText = BrowserUtils.getElementsText(elements);
 
@@ -118,8 +118,6 @@ public class SearchPage extends BasePage{
 
 
         }
-
-
 
     }
 

@@ -1,7 +1,5 @@
 Feature:Payment page
-  #All my scripts are working. If you want to run it again,
-  # you need to make a small change in the e-mail address
-  # because you cannot re-enter the application with the same e-mail address.
+
 
   Scenario: the user wants to buy items and pay it
     Given the user is on the home page

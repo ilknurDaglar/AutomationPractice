@@ -8,6 +8,9 @@ Feature: Users should be able to create account
     When the user click the signin button
     Then Authentication page should be display
 
+ #All my scripts are working. If you want to run it again,
+  # you need to make a small change in the e-mail address
+  # because you cannot re-enter the application with the same e-mail address.
 
   Scenario Outline:the user enters with valid mail address
     When the user click the signin button
@@ -16,7 +19,7 @@ Feature: Users should be able to create account
     Then Create an account page should be display
     Examples:
       | email address       |
-      | olifmolll@gmail.com |
+      | oliveAndMolly@gmail.com |
 
 #BUG 1
   Scenario Outline:the user enters with invalid mail address
