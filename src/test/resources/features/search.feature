@@ -2,10 +2,15 @@ Feature:Search result page
 
   Background:
     Given the user is on the home page
+    When verify that search button is present
     And searches an item with the search box "Printed Dress"
-@wip
+
   Scenario:Verify that the searched item name matches with the page title
     Then searched item name should be on the page
+
+
+  Scenario:Number of items searched matches with shown
+    Then verify that the number of items searched matches the number of items shown
 
 
 #BUG 9

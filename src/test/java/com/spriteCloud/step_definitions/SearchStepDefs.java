@@ -19,7 +19,12 @@ public class SearchStepDefs {
     String expectedTitle;
     String expectedOption;
 
-    @Given("searches an item with the search box {string}")
+    @Given("verify that search button is present")
+    public void verifyThatSearchButtonIsPresent() {
+        Assert.assertTrue(searchPage.searchBox.isEnabled());
+    }
+
+    @When("searches an item with the search box {string}")
     public void searches_an_item_with_the_search_box(String string) {
         searchPage.searchBox.sendKeys(string);
         searchPage.searchBtn.click();
@@ -31,6 +36,11 @@ public class SearchStepDefs {
     public void searchedItemNameShouldBeOnThePage() {
         String actualPage = Driver.get().findElement(By.xpath("//*[@id=\"center_column\"]/h1/span[1]")).getText();
         Assert.assertEquals(actualPage.equalsIgnoreCase(expectedTitle), expectedTitle.equalsIgnoreCase(actualPage));
+    }
+    @Then("verify that the number of items searched matches the number of items shown")
+    public void verifyThatTheNumberOfItemsSearchedMatchesTheNumberOfItemsShown()  {
+
+        searchPage.productCount();
     }
 
     @When("The user select {string} from sort by")
@@ -98,6 +108,7 @@ public class SearchStepDefs {
         searchPage.isItemsSortZ_A();
 
     }
+
 
 
 }

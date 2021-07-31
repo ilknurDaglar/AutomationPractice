@@ -11,13 +11,16 @@ import org.openqa.selenium.support.ui.Select;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchPage extends BasePage{
+public class SearchPage extends BasePage {
 
     @FindBy(xpath = "//*[@id=\"search_query_top\"]")
     public WebElement searchBox;
 
     @FindBy(xpath = "//*[@id=\"searchbox\"]/button")
     public WebElement searchBtn;
+
+    @FindBy(xpath = "//*[@id=\"center_column\"]/div[1]/div[2]/div[2]")
+    public WebElement itemsNumber;
 
     @FindBy(xpath = "//*[@id=\"center_column\"]/h1/span[1]")
     public WebElement searchPage;
@@ -29,7 +32,27 @@ public class SearchPage extends BasePage{
     public List<WebElement> Prices;
 
 
-    public void cheapestToExpensive(){
+    public void productCount(){
+
+        List<WebElement> productsNumber = Driver.get().findElements(By.cssSelector(".product_img_link"));
+        int count = 0;
+        for (WebElement num : productsNumber) {
+            BrowserUtils.waitFor(2);
+            count++;
+        }
+
+
+        System.out.println("items count : " + count);
+
+
+        String numberText = itemsNumber.getText();
+        String number = numberText.substring(17, 18);
+        int actualNumber = Integer.parseInt(number);
+        Assert.assertEquals(count, actualNumber);
+
+    }
+
+    public void cheapestToExpensive() {
         Select priceDrop = new Select(sortByDropdown);
         priceDrop.selectByVisibleText("Price: Lowest first");
         BrowserUtils.waitFor(5);
@@ -50,30 +73,30 @@ public class SearchPage extends BasePage{
         }
     }
 
-     public void expensiveToCheapest() {
-         Select priceDrop = new Select(sortByDropdown);
-         priceDrop.selectByVisibleText("Price: Highest first");
-         BrowserUtils.waitFor(5);
-         List<Integer> allPrices = new ArrayList<>();
-         List<WebElement> numberOfviews = Prices;
+    public void expensiveToCheapest() {
+        Select priceDrop = new Select(sortByDropdown);
+        priceDrop.selectByVisibleText("Price: Highest first");
+        BrowserUtils.waitFor(5);
+        List<Integer> allPrices = new ArrayList<>();
+        List<WebElement> numberOfviews = Prices;
 
-         for (WebElement each : numberOfviews) {
-             int taprice = Integer.parseInt(each.getText().replace("$", "").replace(",", "").replace(".", ""));
-             allPrices.add(taprice);
+        for (WebElement each : numberOfviews) {
+            int taprice = Integer.parseInt(each.getText().replace("$", "").replace(",", "").replace(".", ""));
+            allPrices.add(taprice);
 
-         }
-         System.out.println(allPrices);
-         BrowserUtils.waitFor(10);
-         for (int i = 0; i < allPrices.size() - 1; i++) {
-             Assert.assertTrue(allPrices.get(i) > allPrices.get(i + 1));
-
-
-         }
+        }
+        System.out.println(allPrices);
+        BrowserUtils.waitFor(10);
+        for (int i = 0; i < allPrices.size() - 1; i++) {
+            Assert.assertTrue(allPrices.get(i) > allPrices.get(i + 1));
 
 
-     }
+        }
 
-    public void isItemsSortA_Z(){
+
+    }
+
+    public void isItemsSortA_Z() {
 
         List<WebElement> elements = Driver.get().findElements(By.xpath("//h5[@itemprop='name']"));
         List<String> elementsText = BrowserUtils.getElementsText(elements);
@@ -96,7 +119,7 @@ public class SearchPage extends BasePage{
         }
     }
 
-    public void isItemsSortZ_A(){
+    public void isItemsSortZ_A() {
 
         List<WebElement> elements = Driver.get().findElements(By.xpath("//h5[@itemprop='name']"));
         List<String> elementsText = BrowserUtils.getElementsText(elements);

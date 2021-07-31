@@ -19,7 +19,7 @@ Feature: Users should be able to create account
     Then Create an account page should be display
     Examples:
       | email address       |
-      | oliveAndMolly@gmail.com |
+      | oliveAndMollye@gmail.com |
 
 #BUG 1
   Scenario Outline:the user enters with invalid mail address

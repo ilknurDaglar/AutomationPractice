@@ -3,6 +3,8 @@ package com.spriteCloud.pages;
 import com.spriteCloud.utilities.BrowserUtils;
 import com.spriteCloud.utilities.ConfigurationReader;
 import com.spriteCloud.utilities.Driver;
+import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -60,7 +62,17 @@ public class CreateAccountPage extends BasePage {
 
         Driver.get().get(ConfigurationReader.get("url"));
     }
+     public void autotationVerify(){
 
+         String actualPage = Driver.get().findElement(By.xpath("//*[@id=\"center_column\"]/h1")).getText();
+         Assert.assertEquals("AUTHENTICATION", actualPage);
+
+
+     }
+     public void creatAccountVerify(){
+
+         Assert.assertEquals("CREATE AN ACCOUNT", accountPage.getText());
+     }
 }
 
 

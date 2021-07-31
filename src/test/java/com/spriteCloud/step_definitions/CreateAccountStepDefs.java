@@ -33,8 +33,8 @@ public class CreateAccountStepDefs {
     public void authentication_page_should_be_display() {
         BrowserUtils.waitFor(2);
 
-        String actualPage = Driver.get().findElement(By.xpath("//*[@id=\"center_column\"]/h1")).getText();
-        Assert.assertEquals("AUTHENTICATION", actualPage);
+        createAccountPage.autotationVerify();
+
     }
 
     @When("the user enters valid {string}")
@@ -53,8 +53,8 @@ public class CreateAccountStepDefs {
 
     @Then("Create an account page should be display")
     public void create_an_account_page_should_be_display() {
-
-        Assert.assertEquals("CREATE AN ACCOUNT", createAccountPage.accountPage.getText());
+      createAccountPage.creatAccountVerify();
+     //   Assert.assertEquals("CREATE AN ACCOUNT", createAccountPage.accountPage.getText());
     }
 
     @When("the user enters invalid {string}")
